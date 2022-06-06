@@ -2,9 +2,10 @@ import Adb, { Utils, Device } from '@u4/adbkit';
 import PromiseDuplex from 'promise-duplex'
 import { Duplex } from 'stream';
 
-const entryPoint = 'com.github.gps/com.github.GPSActivity.Service';
+const entryPoint = 'cl.coders.faketraveler/.MainActivity';
 const url = 'https://gps-coordinates.org/';
-  
+
+
 async function main() {
     const adbClient = Adb.createClient();
     const devices: Device[] = await adbClient.listDevices();
@@ -31,7 +32,8 @@ async function main() {
     }
     try {
         // setGeoloc to paris
-        await socket.write('setpostion 48.856613, 2.352222\n');
+        // await socket.write('setpostion 48.856613, 2.352222\n');
+        await socket.write('48.856613&2.352222\n');
     } catch (e) {
         console.error(e);
         throw Error('failed send setpostion command');
